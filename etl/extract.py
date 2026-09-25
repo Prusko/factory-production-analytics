@@ -1,7 +1,12 @@
 import pandas as pd
 import glob
 
-files = glob.glob("../data/raw/2026-09*.csv")
+def extract_data(file_path):
+    files = glob.glob(file_path)
+    dataframes = []
 
-for file in files:
-    print(file)
+    for file in files:
+        df = pd.read_csv(file)
+        dataframes.append(df)
+
+    return pd.concat(dataframes, ignore_index=True)
