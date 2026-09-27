@@ -6,7 +6,7 @@ import numpy as np
 defect_types = ["WELDING", "PRESSURE", "CRACK", "LOOSE"]
 
 
-for day in range(1, 32):
+for day in range(1, 31):
     rows = []
     
     for i in range(1, 5):
@@ -19,7 +19,14 @@ for day in range(1, 32):
                 defect_type = defect_types[np.random.randint(0,4)]
             
             rows.append({
-                "timestamp": f"2026-09-{day}",
+                "timestamp": pd.Timestamp(
+                    year=2026,
+                    month=9,
+                    day=day,
+                    hour=np.random.randint(0, 24),
+                    minute=np.random.randint(0, 60),
+                    second=np.random.randint(0, 60)
+                ),
                 "line_id": f"0{i}",
                 "machine_id": f"M0{i}",
                 "product_id": f"P{j}",
@@ -44,7 +51,5 @@ for day in range(1, 32):
     df = pd.DataFrame(rows)
     df.to_csv(f"products_09-{day}.csv", index=False)
     print(f"products_09-{day}.csv created.")
-    print("Rows: ", len(rows))
-    print("Duplicates: ", df.duplicated().sum())
 
 print("All raw datas csv succesfully created!")
