@@ -36,7 +36,7 @@ for day in range(1, 31):
                 "production_time": time,
                 "defect": defect,
                 "defect_type": defect_type,
-                "energy_consuption": round(np.random.uniform(10, 30), 1)
+                "energy_consumption": round(np.random.uniform(10, 30), 1)
             })
 
         for id in invalid_id:
