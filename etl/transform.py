@@ -8,6 +8,9 @@ def transform_data(df):
     missing_count = df["pressure"].isnull().sum()
     df = df[~df["pressure"].isnull()]
 
+    df.rename(columns={"energy_consuption": "energy_consumption"}, inplace=True)
+    print("Column renamed.")
+
     df["energy_per_product"] = round(df["energy_consumption"] / df["production_time"], 1)
     print("Calculated 'energy_per_product' column.")
     print(f"Removed duplicates: {duplicated_count}.")
